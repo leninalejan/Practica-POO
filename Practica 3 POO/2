@@ -1,0 +1,48 @@
+class Libro {
+    constructor(titulo, autor, añoPublicacion) {
+        this.titulo = titulo;
+        this.autor = autor;
+        this.añoPublicacion = añoPublicacion;
+    }
+}
+
+class Biblioteca {
+    constructor() {
+        this.libros = [];
+    }
+    
+    agregarLibro(titulo, autor, añoPublicacion) {
+        const nuevoLibro = new Libro(titulo, autor, añoPublicacion);
+        this.libros.push(nuevoLibro);
+        console.log(`El libro ${titulo} ha sido agregado a la biblioteca`);
+    }
+
+    buscarPorTitulo(titulo) {
+        const libroEncontrado = this.libros.filter(libro => libro.titulo.toLowerCase().includes(titulo.toLowerCase()));
+        if (libroEncontrado.length > 0) {
+            console.log("Libro Encontrado");
+            libroEncontrado.forEach(libro => {
+                console.log(`${libro.titulo} de ${libro.autor} publicado en ${libro.añoPublicacion}`);
+            });
+        } else {
+            console.log(`No se encontró ningún libro: ${titulo}`);
+        }
+    }
+    
+    mostrarLibros() {
+        if (this.libros.length > 0) {
+            console.log("Libros Disponibles");
+            this.libros.forEach(libro => {
+                console.log(`${libro.titulo} de ${libro.autor} publicado en ${libro.añoPublicacion}`);
+            });
+        } else {
+            console.log("Biblioteca vacía");
+        }
+    }
+}
+
+const miBiblioteca = new Biblioteca();
+// miBiblioteca.mostrarLibros();
+
+miBiblioteca.agregarLibro("Primer título", "Yo", "2025");
+miBiblioteca.buscarPorTitulo("Primer título");
